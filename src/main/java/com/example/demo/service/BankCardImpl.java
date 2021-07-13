@@ -20,7 +20,7 @@ public class BankCardImpl implements BankCardService {
     @Override
     public BankCard addBankCard(Long id) throws Exception {
         var foundUser = userService.getUser(id);
-        if(foundUser==null){
+        if (foundUser == null) {
             throw new Exception("Пользователь не найден");
         }
         List<BankCard> userBankCards = foundUser.getBankCards();

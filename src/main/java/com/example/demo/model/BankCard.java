@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,19 +15,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BankCard {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public Integer getCardNumber() {
         return cardNumber;
     }
 
-    @Column(unique=true)
+    @Column(unique = true)
     private Integer cardNumber;
     private LocalDateTime validEndDate;
+
     public BankCard(Integer cardNumber) {
         this.cardNumber = cardNumber;
-        this.validEndDate= LocalDateTime.now().plusMinutes(1);
+        this.validEndDate = LocalDateTime.now().plusMinutes(1);
     }
 }
 
