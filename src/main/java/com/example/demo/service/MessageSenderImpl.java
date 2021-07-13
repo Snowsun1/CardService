@@ -22,12 +22,13 @@ public class MessageSenderImpl implements MessageSender{
 
     private final JavaMailSender javaMailSender;
     @Override
-    public void sendMessage() {
+    public void sendMessage(User user, Integer cardNumber) {
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo("levseredinskiy1@gmail.com");
+        msg.setTo(user.getEmail());
         msg.setFrom("levseredinskiy5@gmail.com");
         msg.setSubject("Оповещение от банка");
-        msg.setText("Здравствуйте Иван Иванов! \n Срок действия вашей карты истёк");
+        msg.setText("Здравствуйте " + user.getFio() +  "! " +
+                "\n Срок действия вашей карты " +  cardNumber + " истёк");
 
         javaMailSender.send(msg);
     }

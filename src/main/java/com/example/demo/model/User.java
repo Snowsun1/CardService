@@ -24,13 +24,16 @@ public class User {
     @NonNull
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirthday;
+    @NonNull
+    private String email;
 
     @OneToMany(cascade = {CascadeType.REFRESH,CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE})
     @JoinColumn(name = "user_id")
     private List<BankCard> bankCards=new ArrayList<>();
 
-    public User(@NonNull String fio, @NonNull LocalDate dateOfBirthday) {
+    public User(@NonNull String fio, @NonNull LocalDate dateOfBirthday, @NonNull String email) {
         this.fio = fio;
         this.dateOfBirthday = dateOfBirthday;
+        this.email = email;
     }
 }

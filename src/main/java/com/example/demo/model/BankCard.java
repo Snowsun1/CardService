@@ -17,6 +17,11 @@ public class BankCard {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
+    public Integer getCardNumber() {
+        return cardNumber;
+    }
+
     @Column(unique=true)
     private Integer cardNumber;
     private LocalDateTime validEndDate;

@@ -18,7 +18,6 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @AllArgsConstructor
 public class UserController {
-    private final MessageSender messageSender;
     private final UserService userService;
     @GetMapping(value = "/user/{id}")
     public User getUser(@PathVariable Long id){
@@ -33,7 +32,6 @@ public class UserController {
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already registered!", e);
         }
-        messageSender.sendMessage();
         return "Saved";
     }
 }
