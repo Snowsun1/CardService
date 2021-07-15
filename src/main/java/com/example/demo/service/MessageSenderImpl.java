@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.model.User;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,12 +12,12 @@ public class MessageSenderImpl implements MessageSender {
     private final JavaMailSender javaMailSender;
 
     @Override
-    public void sendMessage(User user, Integer cardNumber) {
+    public void sendMessage(String fio, String email, Integer cardNumber) {
         SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setTo(user.getEmail());
+        msg.setTo(email);
         msg.setFrom("levseredinskiy5@gmail.com");
         msg.setSubject("Оповещение от банка");
-        msg.setText("Здравствуйте " + user.getFio() + "! " +
+        msg.setText("Здравствуйте " + fio + "! " +
                 "\n Срок действия вашей карты " + cardNumber + " истёк");
 
         javaMailSender.send(msg);

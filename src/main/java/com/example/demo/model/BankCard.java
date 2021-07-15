@@ -28,7 +28,7 @@ public class BankCard {
 
     public BankCard(Integer cardNumber) {
         this.cardNumber = cardNumber;
-        this.validEndDate = LocalDateTime.now().plusMinutes(1);
+        this.validEndDate = LocalDateTime.now().plusSeconds(10);
     }
 }
 

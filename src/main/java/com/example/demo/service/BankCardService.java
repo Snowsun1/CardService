@@ -12,9 +12,7 @@ public interface BankCardService {
 
     void deleteBankCard(Long cardNumber);
 
-    Integer findCardNumberByCardId(Long cardId);
-
-    public Collection<BankCardsForDeleting> findEntriesAfterDate(LocalDateTime localDate);
+    Collection<BankCardsForDeleting> findEntriesAfterDate(LocalDateTime localDate);
 
     void deleteBankCards(List<Long> ids);
 }

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
+import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.repository.BankCardsForDeleting;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,10 @@ public class BankCardImpl implements BankCardService {
     private final BankCardRepository bankCardRepository;
 
     @Override
-    public BankCard addBankCard(Long id) throws Exception {
+    public BankCard addBankCard(Long id) {
         var foundUser = userService.getUser(id);
         if (foundUser == null) {
-            throw new Exception("Пользователь не найден");
+            throw new UserNotFoundException("Пользователь с id = " + id + " не найден!");
         }
         List<BankCard> userBankCards = foundUser.getBankCards();
         var newBankCard = new BankCard(BankCardUtils.generateRandomBankCardNumber());
@@ -33,11 +34,6 @@ public class BankCardImpl implements BankCardService {
     @Override
     public void deleteBankCard(Long cardNumber) {
         bankCardRepository.deleteById(cardNumber);
-    }
-
-    @Override
-    public Integer findCardNumberByCardId(Long cardId) {
-        return bankCardRepository.findBankCardById(cardId).getCardNumber();
     }
 
     @Override
