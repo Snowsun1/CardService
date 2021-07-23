@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.User;
 import com.example.demo.service.UserService;
 
+import javax.validation.Valid;
 
 
 @RestController
@@ -22,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public String createUser(@RequestBody User user) {
+    public String createUser(@Valid @RequestBody User user) {
         user.setDateOfBirthday(user.getDateOfBirthday());
         userService.saveUser(user);
         return "Saved";

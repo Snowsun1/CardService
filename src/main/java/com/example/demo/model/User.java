@@ -6,10 +6,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 @Entity
 @Table(name = "users")
@@ -19,22 +20,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NonNull
+    @NotNull
     @Column(unique = true)
     private String fio;
-    @NonNull
+    @NotNull
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirthday;
-    @NonNull
+    @NotNull
+    @Email
     private String email;
 
     @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE})
     @JoinColumn(name = "user_id")
     private List<BankCard> bankCards = new ArrayList<>();
 
-    public User(@NonNull String fio, @NonNull LocalDate dateOfBirthday, @NonNull String email) {
-        this.fio = fio;
-        this.dateOfBirthday = dateOfBirthday;
-        this.email = email;
-    }
 }

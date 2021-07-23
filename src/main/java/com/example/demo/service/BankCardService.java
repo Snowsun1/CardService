@@ -10,8 +10,6 @@ import com.example.demo.repository.BankCardsForDeleting;
 public interface BankCardService {
     BankCard addBankCard(Long id) throws Exception;
 
-    void deleteBankCard(Long cardNumber);
-
     Collection<BankCardsForDeleting> findEntriesAfterDate(LocalDateTime localDate);
 
     void deleteBankCards(List<Long> ids);

@@ -32,11 +32,6 @@ public class BankCardImpl implements BankCardService {
     }
 
     @Override
-    public void deleteBankCard(Long cardNumber) {
-        bankCardRepository.deleteById(cardNumber);
-    }
-
-    @Override
     public void deleteBankCards(List<Long> ids) {
         bankCardRepository.deleteAllById(ids);
     }
